@@ -19,6 +19,10 @@ on:
       - edited
       - synchronize
       - labeled
+  issue:
+    types:
+      - opened
+      - labeled
 jobs:
   checker:
     runs-on: ubuntu-latest
