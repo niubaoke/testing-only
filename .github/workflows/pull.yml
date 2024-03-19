@@ -8,4 +8,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Testing job environment
-        run: echo "Hello From Production Envrionment."
+        run: |
+          echo "Hello From Production Envrionment."
