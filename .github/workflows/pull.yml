@@ -12,6 +12,7 @@ on:
       - ready_for_review
       - review_requested
       - review_request_
+      - connected
   pull_request_target:
     types:
       - assigned
