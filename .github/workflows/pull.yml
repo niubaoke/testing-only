@@ -1,0 +1,11 @@
+name: PR has a valid Issue?
+
+on:
+  pull_request_target:
+    types: [ edited, synchronize, opened, reopened ]
+
+jobs:
+  checker:
+    steps:
+      - name: Testing job environment
+        run: echo "Hello From Production Envrionment."
