@@ -1,57 +1,20 @@
-name: PR has a valid Issue
+name: Check Issue Link in PR
 
 on:
   pull_request:
-    types:
-      - opened
-      - assigned
-      - edited
-      - synchronize
-      - labeled
-      - connected
-      - enqueued
-      - ready_for_review
-      - review_requested
-  pull_request_target:
-    types:
-      - assigned
-      - unassigned
-      - labeled
-      - unlabeled
-      - opened
-      - edited
-      - closed
-      - reopened
-      - synchronize
-      - converted_to_draft
-      - ready_for_review
-      - locked
-      - unlocked
-      - review_requested
-      - review_request_
-  issues:
-    types:
-      - opened
-      - edited
-      - deleted
-      - transferred
-      - pinned
-      - connected
-      - unpinned
-      - closed
-      - reopened
-      - assigned
-      - unassigned
-      - labeled
-      - unlabeled
-      - locked
-      - unlocked
-      - milestoned
-      - demilestoned
+    types: [opened, edited, reopened]
+
 jobs:
-  checker:
+  check-issue-link:
     runs-on: ubuntu-latest
     steps:
-      - name: Testing job environment
-        run: |
-          echo "Hello From Production Envrionment."
+      - name: Check for Issue Link
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const pattern = /#(\d+)/;
+            const issueLinkExists = pattern.test(github.event.pull_request.body);
+
+            if (!issueLinkExists) {
+              core.setFailed('Pull Request description does not contain an Issue link.');
+            }
