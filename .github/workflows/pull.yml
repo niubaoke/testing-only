@@ -2,7 +2,10 @@ name: Check Issue Link in PR
 
 on:
   pull_request:
-    types: [opened, edited, reopened]
+    types:
+      - opened
+      - edited
+      - reopened
 
 jobs:
   check-issue-link:
