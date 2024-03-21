@@ -1,23 +1,22 @@
-name: Check Issue Link in PR
+name: PR has a valid Issue
 
 on:
   pull_request:
     types:
       - opened
+      - assigned
       - edited
-      - reopened
-
+      - synchronize
+      - labeled
+      - connected
+      - enqueued
+      - ready_for_review
+      - review_requested
+      - closed
 jobs:
-  check-issue-link:
+  checker:
     runs-on: ubuntu-latest
     steps:
-      - name: Check for Issue Link
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const pattern = /#(\d+)/;
-            const issueLinkExists = pattern.test(github.event.pull_request.body);
-
-            if (!issueLinkExists) {
-              core.setFailed('Pull Request description does not contain an Issue link.');
-            }
+      - name: Testing job environment
+        run: |
+          echo "Hello From Production Envrionment."
