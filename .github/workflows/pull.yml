@@ -20,3 +20,4 @@ jobs:
       - name: Testing job environment
         run: |
           echo "Hello From Production Envrionment."
+          exit 1
