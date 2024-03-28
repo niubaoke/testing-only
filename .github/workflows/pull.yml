@@ -1,23 +1,13 @@
-name: PR has a valid Issue
+name: Scheduled Job
 
 on:
   pull_request:
-    types:
-      - opened
-      - assigned
-      - edited
-      - synchronize
-      - labeled
-      - connected
-      - enqueued
-      - ready_for_review
-      - review_requested
-      - closed
+  schedule:
+    - cron: '*/5 * * * *'
+
 jobs:
-  checker:
+  run-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Testing job environment
-        run: |
-          echo "Hello From Production Envrionment."
-          exit 1
+      - name: Print current time
+        run: echo "The time is $(date)."
